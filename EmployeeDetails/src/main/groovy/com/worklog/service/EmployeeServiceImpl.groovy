@@ -7,6 +7,9 @@ import com.worklog.dao.EmployeeRepository
 import com.worklog.model.Employee
 import com.worklog.model.ProjectInfo
 
+import groovy.util.logging.Slf4j
+
+@Slf4j
 @Service
 class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
@@ -29,15 +32,18 @@ class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getAllEmployee() {
 		// TODO Auto-generated method stub
+		log.info("At get all employee service method")
 		return employeeRepository.findAll()
 	}
 	@Override
 	public Employee getEmployee(String empId) {
 		// TODO Auto-generated method stub
+		log.info("At get a employee service method")
 		return employeeRepository.findById(empId).get()
 	}
 	@Override
 	public void addProjectInfo(String empId, ProjectInfo projectInfo) {
+		log.info("At add projectInfo service method")
 		Optional<Employee> employee = employeeRepository.findById(empId)
 		Employee emp = employee.get()
 		if(employee.isPresent())
@@ -59,6 +65,7 @@ class EmployeeServiceImpl implements EmployeeService {
 	}
 	@Override
 	public void saveEmployee(Employee employee) {
+		log.info("At save employee service method")
 		employeeRepository.save(employee);
 	}
 	
